@@ -16,7 +16,7 @@ import { useGlobalContext } from "../../context/context";
 import { useNavigate } from "react-router-dom";
 
 const TableComponent = ({ contactData, type }) => {
-  const { alreadySelectedRows, setKeys } = useGlobalContext();
+  const { setKeys } = useGlobalContext();
   const [alreadySelected, setAlreadySelected] = useState([]);
   const {
     removeContact,

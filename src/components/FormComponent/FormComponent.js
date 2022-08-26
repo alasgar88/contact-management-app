@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import nextId from "react-id-generator";
 import { toast } from "react-toastify";
 import "./form-component.scss";
 import { Form, Input, Button, Radio, Select, Checkbox } from "antd";
@@ -60,16 +59,19 @@ const FormComponent = ({ editObject }) => {
         }, 1000);
         return;
       } else {
-        let id;
         const uniqueKeys = getUniqueKeysFromLocalStorage();
+        console.log(uniqueKeys);
         while (true) {
-          id = Math.floor(Math.random() * 1000).toString();
+          var key = Math.floor(Math.random() * 1000).toString();
+          console.log(key, "id");
           const isUnique = uniqueKeys.every((item) => item !== id);
+          console.log(isUnique);
           if (isUnique) {
             break;
           }
         }
-        const newContact = { ...values, id: id, star: false };
+        console.log(id);
+        const newContact = { ...values, id: key, star: false };
         addContact(newContact);
         toast.success("Yeni əlaqə yaradıldı");
         setTimeout(() => {
