@@ -63,14 +63,12 @@ const FormComponent = ({ editObject }) => {
         console.log(uniqueKeys);
         while (true) {
           var key = Math.floor(Math.random() * 1000).toString();
-          console.log(key, "id");
           const isUnique = uniqueKeys.every((item) => item !== id);
           console.log(isUnique);
           if (isUnique) {
             break;
           }
         }
-        console.log(id);
         const newContact = { ...values, id: key, star: false };
         addContact(newContact);
         toast.success("Yeni əlaqə yaradıldı");
