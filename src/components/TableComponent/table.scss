@@ -1,0 +1,39 @@
+.icon {
+    font-size: 18px;
+    margin-right: 5px;
+    cursor:pointer;
+    color: rgb(85, 84, 84);
+  
+}
+
+.iconStar{
+    font-size: 20px;
+}
+
+.icon-button{
+    color: rgb(195, 195, 195);
+    width: 30px;
+    background: transparent;
+}
+.icon-button:hover{
+    color: rgb(195, 195, 195);
+    width: 30px;
+    background: transparent;
+}
+
+.ant-btn-text:hover,.ant-btn-text:focus {
+    color: rgb(195, 195, 195);
+}
+
+
+.ant-table-container table > thead > tr:first-child th:last-child {
+    width: 123px;
+}
+
+.icon-button.yellow-icon{
+    color: rgb(191, 191, 4);
+}
+.icon-button.black-icon{
+    color: rgb(85, 84, 84);
+}
+

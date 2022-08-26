@@ -1,0 +1,19 @@
+.button-container{
+    display: flex;
+    justify-content: center;
+    width: 85%;
+    margin-top: 34px;
+    margin-bottom: 0px;
+}
+
+
+.submit-button{
+    width: 120px;
+}
+
+
+@media screen and (max-width: 821px) {
+.ant-row{
+    flex-direction: column;
+}
+}
