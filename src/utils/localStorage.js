@@ -27,3 +27,13 @@ export const getContactFromRecycle = () => {
   const recycle = result ? JSON.parse(result) : [];
   return recycle;
 };
+
+export const getUniqueKeysFromLocalStorage = () => {
+  const data1 = getContactFromLocalStorage();
+  const data2 = getContactFromRecycle();
+  const keys1 = data1.map((item) => item.id);
+  const keys2 = data2.map((item) => item.id);
+  const dataKeys = [...keys1, ...keys2];
+  let uniqueKeys = [...new Set(dataKeys)];
+  return uniqueKeys;
+};

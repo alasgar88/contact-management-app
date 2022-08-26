@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import nextId from "react-id-generator";
 import { toast } from "react-toastify";
 import "./form-component.scss";
-
 import { Form, Input, Button, Radio, Select, Checkbox } from "antd";
 import { useGlobalContext } from "../../context/context";
 import { useNavigate, useParams } from "react-router-dom";
+import { getUniqueKeysFromLocalStorage } from "../../utils/localStorage";
 const { TextArea } = Input;
 
 const FormComponent = ({ editObject }) => {
@@ -52,7 +52,6 @@ const FormComponent = ({ editObject }) => {
         toast.error("Boşluqla başlayan dəyər");
         return;
       } else if (valueExists) {
-        console.log(values, "values");
         updateContact({ ...values, id: editObject.id });
         toast.success("Əlaqə yeniləndi");
         setTimeout(() => {
@@ -61,7 +60,15 @@ const FormComponent = ({ editObject }) => {
         }, 1000);
         return;
       } else {
-        const id = nextId();
+        let id;
+        const uniqueKeys = getUniqueKeysFromLocalStorage();
+        while (true) {
+          id = Math.floor(Math.random() * 1000).toString();
+          const isUnique = uniqueKeys.every((item) => item !== id);
+          if (isUnique) {
+            break;
+          }
+        }
         const newContact = { ...values, id: id, star: false };
         addContact(newContact);
         toast.success("Yeni əlaqə yaradıldı");
@@ -191,11 +198,10 @@ const FormComponent = ({ editObject }) => {
             <Radio value='Qadin'> Qadın </Radio>
           </Radio.Group>
         </Form.Item>
-        {/* <Form.Item label='Doğum tarixi' name='birthday'>
-          <DatePicker />
-        </Form.Item> */}
-        <Form.Item name='news' label='Bildiriş'>
-          <Checkbox>Yeniliklərə yazıl</Checkbox>
+        <Form.Item name='news' label='Bildiriş' valuePropName='checked'>
+          <Checkbox value='checked' defaultChecked={false}>
+            Yeniliklərə yazıl
+          </Checkbox>
         </Form.Item>
         <Form.Item className='button-container'>
           <Button type='primary' htmlType='submit' className='submit-button'>

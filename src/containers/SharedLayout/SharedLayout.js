@@ -1,6 +1,6 @@
 import "./shared-layout.scss";
 import { Layout, Menu } from "antd";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
 import {
   DeleteFilled,
@@ -12,14 +12,15 @@ const { Header, Content, Sider } = Layout;
 
 const items1 = [
   <NavLink to='/contacts'>Əlaqələr</NavLink>,
-  <NavLink to='/contacts/new'>Yeni Əlavə yarat</NavLink>,
+  <NavLink to='/contacts/new'>Yeni Əlaqə yarat</NavLink>,
 ].map((menuItem, index) => ({
-  index,
+  key: index,
   label: menuItem,
 }));
 
 const SharedLayout = () => {
   const { addTableType } = useGlobalContext();
+  const [menuKey, setMenuKey] = useState(0);
 
   let url = useLocation().pathname;
   if (url === "/" || url === "/contacts") {
@@ -27,6 +28,12 @@ const SharedLayout = () => {
   } else {
     url = false;
   }
+
+  useEffect(() => {
+    const number = url ? 0 : 1;
+    setMenuKey(number);
+  }, [url]);
+
   const tableTypeList = ["", "all", "selected", "recycle"];
   return (
     <div className='main-container'>
@@ -36,8 +43,9 @@ const SharedLayout = () => {
           <Menu
             theme='dark'
             mode='horizontal'
-            defaultSelectedKeys={["2"]}
+            defaultSelectedKeys={["0"]}
             items={items1}
+            selectedKeys={[`${menuKey}`]}
           />
         </Header>
         <Layout>

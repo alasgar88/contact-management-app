@@ -19,7 +19,8 @@ const BasicModal = ({ data }) => {
 
   const handleOk = () => {
     setIsModalVisible(false);
-    modalFunction(modalData ? modalData.id : idArray);
+    // new
+    modalFunction && modalFunction(modalData ? modalData.id : idArray);
     closeModal();
     if (toastText !== "no-toast") {
       toast.success(toastText);

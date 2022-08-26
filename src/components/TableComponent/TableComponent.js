@@ -18,7 +18,6 @@ import { useNavigate } from "react-router-dom";
 const TableComponent = ({ contactData, type }) => {
   const { alreadySelectedRows, setKeys } = useGlobalContext();
   const [alreadySelected, setAlreadySelected] = useState([]);
-  console.log(alreadySelectedRows, "alreadySelectedRowKeys");
   const {
     removeContact,
     addStar,
@@ -100,11 +99,19 @@ const TableComponent = ({ contactData, type }) => {
       title: "Əməliyyat",
       dataIndex: "action",
       key: "action",
+
       render: (_, { icons }) => (
         <>
-          {icons.map((icon) => {
+          {icons.map((icon, index) => {
             // return icon;
-            return <Button type='text' icon={icon} className='icon-button' />;
+            return (
+              <Button
+                type='text'
+                icon={icon}
+                className='icon-button'
+                key={index}
+              />
+            );
           })}
         </>
       ),
@@ -210,7 +217,6 @@ const TableComponent = ({ contactData, type }) => {
                     "Əlaqəni bərpa etmək üçün təsdiq et"
                   )
                 }
-                clas
                 className='icon restore-icon'
                 data-id={contact.id}
                 data-type='restore'
@@ -243,9 +249,9 @@ const TableComponent = ({ contactData, type }) => {
       <Table
         columns={columns}
         dataSource={data}
+        rowKey='key'
         rowSelection={{
           onChange: (keys) => {
-            console.log(keys);
             setAlreadySelected(keys);
             setKeys(keys);
           },

@@ -38,9 +38,6 @@ const reducer = (state, action) => {
   }
 
   if (action.type === "ADD_STAR") {
-    console.log(state.contacts, "contacts");
-    console.log(action.payload);
-
     const contacts = state.contacts.map((contact) => {
       if (contact.id === action.payload) {
         return { ...contact, star: !contact.star };
@@ -62,7 +59,6 @@ const reducer = (state, action) => {
   }
 
   if (action.type === "RESTORE_CONTACT_FROM_RECYCLE") {
-    console.log("burdayam");
     const recycle = state.recycle.filter((item) => item.id !== action.payload);
     const restoreItem = state.recycle.find(
       (item) => item.id === action.payload
@@ -74,8 +70,6 @@ const reducer = (state, action) => {
   }
 
   if (action.type === "SHOW_MODAL") {
-    console.log(action.payload);
-    console.log(action.payload.actionText, "actionText");
     var showModalComponent = {
       ...state.showModalComponent,
       state: true,
@@ -101,7 +95,7 @@ const reducer = (state, action) => {
 
   if (action.type === "DELETE_ALL") {
     const tableType = state.showModalComponent.tableType;
-    if (tableType === "recycle") {
+    if (tableType === "recycle" && action.payload) {
       const recycle = state.recycle.filter(
         (item) => !action.payload.includes(item.id)
       );
@@ -112,7 +106,7 @@ const reducer = (state, action) => {
         recycle,
         showModalComponent: { ...showModalComponent, alreadySelectedRows: [] },
       };
-    } else {
+    } else if (action.payload) {
       // add to recycle bin
       const deletedContacts = state.contacts.filter((contact) =>
         action.payload.includes(contact.id)
@@ -134,6 +128,7 @@ const reducer = (state, action) => {
         showModalComponent: { ...showModalComponent, alreadySelectedRows: [] },
       };
     }
+    return state;
   }
 
   throw new Error("no matching action type");

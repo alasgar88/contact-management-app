@@ -22,7 +22,6 @@ const Contacts = () => {
 
   const selectedContacts = contacts.filter((contact) => contact.star === true);
   const recycleContacts = recycle;
-  console.log(tableType, "tableType");
 
   useEffect(() => {
     setTable(tableType);

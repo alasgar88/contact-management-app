@@ -37,7 +37,6 @@ export const AppProvider = ({ children }) => {
     dispatch({ type: "UPDATE_CONTACT", payload: id });
   };
   const removeContact = (id) => {
-    console.log("islemir");
     dispatch({ type: "REMOVE_CONTACT", payload: id });
   };
 
