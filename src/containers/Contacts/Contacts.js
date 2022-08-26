@@ -71,12 +71,12 @@ const Contacts = () => {
             showModal({
               data: null,
               toastText:
-                alreadySelectedRows.length > 0
+                alreadySelectedRows?.length > 0
                   ? "Əlaqələr uğurla silindi"
                   : "no-toast",
               modalFunction: deleteAll,
               actionText:
-                alreadySelectedRows.length > 0
+                alreadySelectedRows?.length > 0
                   ? "Əlaqələri silmək üçün təsdiqləyin"
                   : "Əlaqə seçilməyib",
 
