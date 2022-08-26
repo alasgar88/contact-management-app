@@ -219,7 +219,7 @@ const TableComponent = ({ contactData, type }) => {
                 onClick={() =>
                   handleDeleteClick(
                     contact,
-                    "Əlaqə zibil qutusundan silindi",
+                    "Əlaqə çöp qutusundan silindi",
                     removeContactFromRecycle,
                     "Əlaqəni birdəfəlik silmək üçün təsdiq et"
                   )

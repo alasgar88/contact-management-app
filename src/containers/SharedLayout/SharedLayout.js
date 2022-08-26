@@ -76,7 +76,7 @@ const SharedLayout = () => {
                         style={{ fontSize: "17px", color: "white" }}
                       />
                     ),
-                    label: "Zibil qutusu",
+                    label: "Çöp qutusu",
                   },
                 ]}
               />
