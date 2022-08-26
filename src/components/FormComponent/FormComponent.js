@@ -60,11 +60,9 @@ const FormComponent = ({ editObject }) => {
         return;
       } else {
         const uniqueKeys = getUniqueKeysFromLocalStorage();
-        console.log(uniqueKeys);
         while (true) {
           var key = Math.floor(Math.random() * 1000).toString();
           const isUnique = uniqueKeys.every((item) => item !== id);
-          console.log(isUnique);
           if (isUnique) {
             break;
           }
