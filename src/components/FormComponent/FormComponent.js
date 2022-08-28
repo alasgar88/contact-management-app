@@ -8,6 +8,7 @@ import { getUniqueKeysFromLocalStorage } from "../../utils/localStorage";
 const { TextArea } = Input;
 
 const FormComponent = ({ editObject }) => {
+  const [button, setButton] = useState(0);
   const { contacts, addContact, updateContact, addTableType } =
     useGlobalContext();
   const navigate = useNavigate();
@@ -19,6 +20,8 @@ const FormComponent = ({ editObject }) => {
     setComponentDisabled(disabled);
   };
   const onFinish = (values) => {
+    setButton(1);
+    if (button === 1) return;
     if (
       values.name &&
       values.surname &&
